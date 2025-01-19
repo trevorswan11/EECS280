@@ -23,8 +23,19 @@ using namespace std;
 // EFFECTS: Prints descriptive statistics for the given data
 void print_descriptive_stats(vector<double> data)
 {
-    // TODO: Implement this function, removing the assert(false); placeholder.
-    assert(false);
+    if (count(data) < 2) return;
+    cout << "count = " << count(data) << endl;
+    cout << "sum = " << sum(data) << endl;
+    cout << "mean = " << mean(data) << endl;
+    cout << "stdev = " << stdev(data) << endl;
+    cout << "median = " << median(data) << endl;
+    cout << "min = " << min(data) << endl;
+    cout << "max = " << max(data) << endl;
+    cout << "  0th percentile = " << percentile(data, 0) << endl;
+    cout << " 25th percentile = " << percentile(data, .25) << endl;
+    cout << " 50th percentile = " << percentile(data, .50) << endl;
+    cout << " 75th percentile = " << percentile(data, .75) << endl;
+    cout << "100th percentile = " << percentile(data, 1) << endl;
 }
 
 // REQUIRES: Nothing
@@ -35,8 +46,6 @@ void print_descriptive_stats(vector<double> data)
 vector<double> mean_diff_sampling_distribution(
     vector<double> data_A, vector<double> data_B)
 {
-    // TODO: Implement this function, removing the assert(false); placeholder.
-
     // HINT: Repeat the following 1000 times:
     //   1. Generate bootstrap resamples for data_A and data_B by
     //      calling the bootstrap_resample() function from the library module.
@@ -44,7 +53,14 @@ vector<double> mean_diff_sampling_distribution(
     //   2. Compute the difference in means between the resamples
     //   3. Add the computed value to a vector
 
-    assert(false);
+    vector<double> diff_means;
+    for (int i = 0; i < 1000; i++)
+    {
+        auto resample_A = bootstrap_resample(data_A, i);
+        auto resample_B = bootstrap_resample(data_B, i);
+        diff_means.push_back(mean(resample_A) - mean(resample_B));
+    }
+    return diff_means;
 }
 
 // REQUIRES: v is not empty
@@ -55,15 +71,14 @@ vector<double> mean_diff_sampling_distribution(
 //           confidence interval with width 0.8 are the 10th and 90th percentiles.
 pair<double, double> confidence_interval(vector<double> v, double width)
 {
-    // TODO: Implement this function, removing the assert(false); placeholder.
-
     // HINT: Use the percentile function as a helper
     //       to compute the lower and upper bounds.
 
     // HINT: You can return a pair like this:
     //   return {lower, upper};
-
-    assert(false);
+    if (count(v) == 0 || width < 0 || width > 1) return {};
+    double length = (1 - width) / 2.0;
+    return {percentile(v, length), percentile(v, 1 - length)};
 }
 
 void two_sample_analysis(string file_name, string filter_column_name,

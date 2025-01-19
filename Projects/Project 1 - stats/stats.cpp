@@ -7,13 +7,10 @@
 
 using namespace std;
 
-// Can also iterate, not sure of project spec (both here work)
 int count(vector<double> v)
 {
+    // Can also iterate, not sure of project spec
     return v.size();
-    // int count;
-    // for (count = 0; count < v.size(); ++count) {}
-    // return count;
 }
 
 double sum(vector<double> v)
@@ -23,16 +20,16 @@ double sum(vector<double> v)
     return sum;
 }
 
-// double / count -> double
 double mean(vector<double> v)
 {
+    // double / count -> double
     int v_size = count(v);
     return v_size == 0 ? 0 : sum(v) / v_size; 
 }
 
-// modulo is lovely isn't it
 double median(vector<double> v)
 {
+    // modulo is lovely isn't it
     int v_size = count(v);
     if (v_size == 0)
         return 0;
@@ -43,9 +40,9 @@ double median(vector<double> v)
         return v[v_size / 2];
 }
 
-// Avoid using sort here, most likely an nlogn algorithm, but this is linear
 double min(vector<double> v)
 {
+    // Avoid using sort here, most likely an nlogn algorithm, but this is linear
     int v_size = count(v);
     if (v_size == 0)
         return 0;
@@ -56,9 +53,9 @@ double min(vector<double> v)
     return min;
 }
 
-// Avoid using sort here, most likely an nlogn algorithm, but this is linear
 double max(vector<double> v)
 {
+    // Avoid using sort here, most likely an nlogn algorithm, but this is linear
     int v_size = count(v);
     if (v_size == 0)
         return 0;
@@ -75,6 +72,8 @@ double stdev(vector<double> v)
     int v_size = count(v);
     if (v_size == 0)
         return 0;
+    else if (v_size == 1)
+        return v[0];
     double avg = mean(v);
     for (int i = 0; i < v_size; ++i)
         sum_squares += (v[i] - avg) * (v[i] - avg);
@@ -83,16 +82,27 @@ double stdev(vector<double> v)
 
 double percentile(vector<double> v, double p)
 {
+    // Handle edge cases
     if (p < 0 || p > 1)
         return 0;
     int v_size = count(v);
     if (v_size == 0)
         return 0;
+
     sort(v.begin(), v.end());
-    int rank = p * v_size + 1;
+    double rank = p * (v_size - 1);
     double int_part, frac_part;
+
+    // Split rank into integer and fractional parts
     frac_part = modf(rank, &int_part);
-    return v[int_part - 1] + frac_part * (v[int_part] - v[int_part - 1]); 
+    int index = static_cast<int>(int_part); // also could use (int)int_part
+
+    // Prevent index out of bounds
+    if (index + 1 < v_size)
+        return v[index] + frac_part * (v[index + 1] - v[index]);
+    // If index is at the end of the vector
+    else 
+        return v[index];
 }
 
 vector<double> filter(vector<double> v,
