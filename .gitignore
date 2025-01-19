@@ -2,3 +2,11 @@
 .vscode
 .DS_Store
 sites.txt
+*.exe
+*~ 
+*.out 
+*.dSYM 
+*.stackdump
+*.swp
+*.swo
+starter-files.tar.gz
