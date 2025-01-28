@@ -1,0 +1,11 @@
+Course home: https://eecs280.org/
+
+Project 1: https://eecs280staff.github.io/stats/
+Starter File Download: https://eecs280staff.github.io/stats/starter-files.tar.gz
+Topic: Statistics
+Due: Januaray 27, 8pm
+
+Project 2: https://eecs280staff.github.io/image-processing/
+Starter File Download: https://eecs280staff.github.io/image-processing/starter-files.tar.gz
+Topic: Image Processing
+Due: Feb 12, 8pm
