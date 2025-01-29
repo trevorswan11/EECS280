@@ -1,18 +1,18 @@
 #ifndef PROCESSING_HPP
 #define PROCESSING_HPP
 
-#include "Matrix.hpp"
 #include "Image.hpp"
+#include "Matrix.hpp"
 
 // REQUIRES: img points to a valid Image
 // MODIFIES: *img
 // EFFECTS:  The image is rotated 90 degrees to the left (counterclockwise).
-void rotate_left(Image* img);
+void rotate_left(Image *img);
 
 // REQUIRES: img points to a valid Image.
 // MODIFIES: *img
 // EFFECTS:  The image is rotated 90 degrees to the right (clockwise).
-void rotate_right(Image* img);
+void rotate_right(Image *img);
 
 // REQUIRES: img points to a valid Image.
 //           energy points to a Matrix.
@@ -22,7 +22,7 @@ void rotate_right(Image* img);
 //           size as the given Image, and then the energy matrix for that
 //           image is computed and written into it.
 //           See the project spec for details on computing the energy matrix.
-void compute_energy_matrix(const Image* img, Matrix* energy);
+void compute_energy_matrix(const Image *img, Matrix *energy);
 
 // REQUIRES: energy points to a valid Matrix.
 //           cost points to a Matrix.
@@ -33,18 +33,20 @@ void compute_energy_matrix(const Image* img, Matrix* energy);
 //           size as the given energy Matrix, and then the cost matrix is
 //           computed and written into it.
 //           See the project spec for details on computing the cost matrix.
-void compute_vertical_cost_matrix(const Matrix* energy, Matrix *cost);
+void compute_vertical_cost_matrix(const Matrix *energy, Matrix *cost);
 
 // REQUIRES: cost points to a valid Matrix
-// EFFECTS:  Returns the vertical seam with the minimal cost according to the given
-//           cost matrix, represented as a vector filled with the column numbers for
-//           each pixel along the seam, starting with the lowest numbered row (top
-//           of image) and progressing to the highest (bottom of image). The length
-//           of the returned vector is equal to Matrix_height(cost).
-//           While determining the seam, if any pixels tie for lowest cost, the
-//           leftmost one (i.e. with the lowest column number) is used.
-//           See the project spec for details on computing the minimal seam.
-std::vector<int> find_minimal_vertical_seam(const Matrix* cost);
+// EFFECTS:  Returns the vertical seam with the minimal cost according to the
+// given
+//           cost matrix, represented as a vector filled with the column numbers
+//           for each pixel along the seam, starting with the lowest numbered
+//           row (top of image) and progressing to the highest (bottom of
+//           image). The length of the returned vector is equal to
+//           Matrix_height(cost). While determining the seam, if any pixels tie
+//           for lowest cost, the leftmost one (i.e. with the lowest column
+//           number) is used. See the project spec for details on computing the
+//           minimal seam.
+std::vector<int> find_minimal_vertical_seam(const Matrix *cost);
 
 // REQUIRES: img points to a valid Image with width >= 2
 //           seam.size() == Image_height(img)
@@ -88,6 +90,5 @@ void seam_carve_height(Image *img, int newHeight);
 // NOTE:     This is equivalent to applying seam_carve_width(img, newWidth)
 //           and then applying seam_carve_height(img, newHeight).
 void seam_carve(Image *img, int newWidth, int newHeight);
-
 
 #endif // PROCESSING_HPP

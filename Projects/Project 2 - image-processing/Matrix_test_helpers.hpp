@@ -12,6 +12,6 @@
 //           mat2 points to a valid Matrix
 // EFFECTS:  Returns true if mat1 and mat2 are the same size and
 //           contain exactly the same elements. Returns false otherwise.
-bool Matrix_equal(const Matrix* mat1, const Matrix* mat2);
+bool Matrix_equal(const Matrix *mat1, const Matrix *mat2);
 
 #endif // MATRIX_TEST_HELPERS_HPP
