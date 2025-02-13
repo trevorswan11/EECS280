@@ -9,3 +9,8 @@ Project 2: https://eecs280staff.github.io/image-processing/
 Starter File Download: https://eecs280staff.github.io/image-processing/starter-files.tar.gz
 Topic: Image Processing
 Due: Feb 12, 8pm
+
+Project 3: https://eecs280staff.github.io/euchre/
+Starter File Download: https://eecs280staff.github.io/euchre/starter-files.tar.gz
+Topic: Euchre
+Due: Mar 12, 8pm
